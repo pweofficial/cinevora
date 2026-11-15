@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CINEVORA | AI Creative Studio</title>
+<style>
+:root{--bg:#100b13;--panel:#1b121e;--panel2:#241729;--ox:#521426;--purple:#43205f;--pink:#d58ba9;--text:#fff9fc;--muted:#aa9eae;--line:#38283e;--good:#8ed6b0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#281344 0,transparent 34%),var(--bg);color:var(--text);font:15px/1.5 Arial,sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
+.app{display:flex;min-height:100vh}.sidebar{width:255px;background:#160f19;border-right:1px solid var(--line);padding:22px 14px;position:fixed;inset:0 auto 0 0;overflow:auto;z-index:5}
+.brand{padding:8px 12px 22px}.brand strong{font-size:24px;letter-spacing:3px}.brand small{display:block;color:var(--muted);margin-top:4px}
+.nav-label{font-size:11px;letter-spacing:1.5px;color:#907f95;padding:17px 12px 7px}.nav-link{display:flex;align-items:center;gap:11px;width:100%;border:0;background:transparent;color:#c9bdcd;text-align:left;padding:11px 12px;border-radius:10px;margin:3px 0}
+.nav-link:hover,.nav-link.active{background:linear-gradient(100deg,var(--ox),var(--purple));color:white}.nav-link span{width:20px;text-align:center}
+.main{margin-left:255px;width:calc(100% - 255px);padding:28px;max-width:1600px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px}.eyebrow{color:var(--pink);letter-spacing:2px;font-size:11px;font-weight:bold}.topbar h1{font-size:23px;margin:3px 0}.status{border:1px solid #315d49;color:var(--good);padding:7px 12px;border-radius:30px;font-size:12px}
+.page-section{display:none;animation:fade .2s ease}.page-section.active{display:block}@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+.hero{background:linear-gradient(120deg,#521426,#281344 78%);padding:30px;border-radius:18px;border:1px solid #63334e;margin-bottom:20px}.hero h2{font-size:30px;margin:5px 0 8px}.hero p{color:#eadce8;max-width:720px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{background:linear-gradient(145deg,var(--panel),#1c1421);border:1px solid var(--line);border-radius:15px;padding:20px;margin-bottom:18px;min-width:0}.card h3{margin:0 0 13px;font-size:17px}.card p,.muted{color:var(--muted)}.section-head{margin:0 0 18px}.section-head h2{font-size:25px;margin:0 0 4px}.section-head p{color:var(--muted);margin:0}
+label{display:block;color:#d9cddd;font-size:13px;margin:13px 0 6px}input,textarea,select{width:100%;background:#100c14;border:1px solid #49364f;color:var(--text);padding:12px;border-radius:9px;outline:none}input:focus,textarea:focus,select:focus{border-color:var(--pink)}textarea{resize:vertical;min-height:95px}input[type=file]{padding:9px}.btn{border:0;border-radius:9px;padding:11px 16px;color:white;background:linear-gradient(100deg,var(--ox),var(--purple));font-weight:bold;margin-top:14px}.btn.secondary{background:#302238;border:1px solid #57435e}.btn:hover{filter:brightness(1.15)}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1}
+.preview{min-height:185px;border:1px dashed #684e70;background:#100c14;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;color:var(--muted)}.preview img{max-width:100%;max-height:240px;object-fit:contain;border-radius:8px}.stat{font-size:24px;font-weight:bold}.scene{border:1px solid var(--line);background:#17101c;padding:14px;border-radius:10px;margin:10px 0}.track{height:42px;border:1px solid #4c3953;border-radius:8px;background:#130e17;margin:9px 0;display:flex;align-items:center;padding:0 12px;color:var(--muted)}.track b{color:var(--pink);margin-right:12px}.notice{font-size:12px;color:var(--muted);margin-top:10px}.footer{color:#817486;font-size:12px;padding:20px 4px}
+@media(max-width:850px){.sidebar{width:215px}.main{margin-left:215px;width:calc(100% - 215px);padding:18px}.grid{grid-template-columns:1fr}}
+@media(max-width:620px){.app{display:block}.sidebar{position:relative;width:100%;height:auto;max-height:280px;border-right:0;border-bottom:1px solid var(--line)}.main{margin:0;width:100%;padding:16px}.topbar{align-items:flex-start;flex-direction:column}.hero h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><strong>CINEVORA</strong><small>AI Creative Studio</small></div>
+  <div class="nav-label">WORKSPACE</div>
+  <button class="nav-link active" data-section="dashboard"><span>⌂</span>Dashboard</button>
+  <button class="nav-link" data-section="story-director"><span>✦</span>AI Story Director</button>
+  <button class="nav-link" data-section="character-studio"><span>◉</span>Character Studio</button>
+  <button class="nav-link" data-section="image-studio"><span>▧</span>Image Studio</button>
+  <button class="nav-link" data-section="scene-composer"><span>▤</span>Scene Composer</button>
+  <button class="nav-link" data-section="motion-studio"><span>➤</span>Motion Studio</button>
+  <button class="nav-link" data-section="voice-studio"><span>♫</span>Voice & Sound</button>
+  <button class="nav-link" data-section="timeline"><span>▥</span>Video Timeline</button>
+  <button class="nav-link" data-section="export-studio"><span>⇧</span>Export Studio</button>
+  <div class="nav-label">ACCOUNT</div>
+  <button class="nav-link" data-section="preferences"><span>⚙</span>Preferences</button>
+</aside>
+<main class="main">
+  <div class="topbar"><div><div class="eyebrow">YOUR CREATIVE WORKSPACE</div><h1>AI Video Studio</h1></div><div class="status">● Workspace interface ready</div></div>
+
+  <section class="page-section active" id="dashboard">
+    <div class="hero"><div class="eyebrow">CINEVORA CREATE STORIES BEYOND IMAGINATION</div><h2>Bring your ideas to life.</h2><p>Plan characters, build scenes, coordinate simultaneous actions, shape sound and prepare videos in one creative workspace.</p><div class="row"><button class="btn" data-go="story-director">Start a new story</button><button class="btn secondary" id="saveProjectBtn">Save Project</button></div></div>
+    <div class="grid">
+      <div class="card"><h3>Project Preview</h3><div class="preview" id="projectPreview">Your video preview will appear here.<br>Start by describing the video you want to create.</div><p class="notice">Preview generation becomes available after connecting video services.</p></div>
+      <div class="card"><h3>Workspace overview</h3><div class="stat">10</div><p>Creative work areas available</p><p class="muted">Story • Characters • Images • Scenes • Motion • Audio • Timeline • Export</p></div>
+    </div>
+  </section>
+
+  <section class="page-section" id="story-director">
+    <div class="section-head"><h2>AI Story Director</h2><p>Describe your idea and prepare a storyboard plan.</p></div>
+    <div class="card"><label for="storyPrompt">Describe the video you want to create</label><textarea id="storyPrompt" placeholder="Example: A little Chihuahua prepares breakfast while two puppies play in the living room..."></textarea>
+      <div class="grid"><div><label>Video duration</label><select id="storyDuration"><option>30 seconds</option><option>1 minute</option><option>3 minutes</option><option>5 minutes</option><option>10 minutes</option></select></div><div><label>Video format</label><select><option>16:9 YouTube</option><option>9:16 Reels / TikTok</option><option>1:1 Square</option></select></div><div><label>Visual style</label><select><option>Cinematic</option><option>Polished 3D animation</option><option>Photorealistic</option><option>Cartoon animation</option><option>Anime</option><option>Fantasy</option></select></div><div><label>Quality target</label><select><option>High</option><option>Ultra high</option><option>Standard</option></select></div></div>
+      <button class="btn" id="generateStoryBtn">Prepare My Storyboard</button><p class="notice">This prototype can collect your story brief. Actual storyboard generation requires a connected AI service.</p>
+    </div>
+    <div class="card"><h3>Storyboard planner</h3><div class="scene"><b>Opening Scene 01</b><p class="muted">Introduce the characters and setting.</p></div><div class="scene"><b>Main Activities 02</b><p class="muted">Plan the main actions and interactions.</p></div><div class="scene"><b>Closing Scene 03</b><p class="muted">Create a clear ending.</p></div><button class="btn secondary" id="addSceneBtn">Add Scene</button><div id="extraScenes"></div></div>
+  </section>
+
+  <section class="page-section" id="character-studio">
+    <div class="section-head"><h2>Character Studio</h2><p>Create a character description and keep its design consistent.</p></div>
+    <div class="card"><div class="grid"><div><label>Character name</label><input placeholder="e.g. Coco"></div><div><label>Character type</label><select><option>Animal</option><option>Human</option><option>Fantasy creature</option><option>Cartoon character</option><option>Object / product</option><option>Other</option></select></div><div><label>Visual style</label><select><option>Photorealistic</option><option>Polished 3D animation</option><option>Cartoon</option><option>Anime</option><option>Fantasy</option><option>Cinematic</option></select></div><div><label>Voice preference</label><select><option>Not selected</option><option>Warm</option><option>Playful</option><option>Deep</option><option>Childlike</option><option>No dialogue</option></select></div></div><label>Appearance and personality</label><textarea placeholder="Describe appearance, clothing, personality, distinctive features and behaviour..."></textarea><label>Upload reference image</label><input type="file" accept="image/*" id="characterUpload"><button class="btn" id="saveCharacterBtn">Save Character Description</button><p class="notice">Character image generation and consistency require a connected AI image/video engine.</p></div>
+  </section>
+
+  <section class="page-section" id="image-studio">
+    <div class="section-head"><h2>Image Studio</h2><p>Prepare image prompts and reference images.</p></div>
+    <div class="grid"><div class="card"><label>Image prompt</label><textarea id="imagePrompt" placeholder="Describe the image you want..."></textarea><label>Style</label><select><option>Cinematic</option><option>Photorealistic</option><option>3D animation</option><option>Cartoon</option><option>Anime</option><option>Fantasy</option></select><label>Aspect ratio</label><select><option>Landscape 16:9</option><option>Portrait 9:16</option><option>Square 1:1</option></select><label>Reference image</label><input type="file" id="imageUpload" accept="image/*"><button class="btn" id="prepareImageBtn">Prepare Image</button></div><div class="card"><h3>Image preview</h3><div class="preview" id="imagePreview"><span>Your selected reference image will appear here.</span></div></div></div><p class="notice">AI image creation requires a connected image-generation service.</p>
+  </section>
+
+  <section class="page-section" id="scene-composer">
+    <div class="section-head"><h2>Scene Composer</h2><p>Build a scene with multiple actions happening at the same time.</p></div>
+    <div class="card"><label>Scene title</label><input placeholder="e.g. Breakfast at home"><label>Environment / location</label><input placeholder="Describe the room, market, beach, street or other setting..."><h3 style="margin-top:18px">Simultaneous actions</h3><p class="muted">Add foreground and background actions that happen together.</p><div id="actionsContainer"><textarea class="action-input" placeholder="Foreground action: the Chihuahua is cooking..."></textarea><textarea class="action-input" placeholder="Background action: two puppies are playing..."></textarea><textarea class="action-input" placeholder="Another action: a dog is washing dishes..."></textarea></div><button class="btn secondary" id="addActionBtn">+ Add another action</button><div class="grid"><div><label>Camera movement</label><select><option>Static</option><option>Slow pan</option><option>Tracking shot</option><option>Close-up</option><option>Wide shot</option></select></div><div><label>Lighting</label><select><option>Natural daylight</option><option>Warm indoor</option><option>Dramatic cinematic</option><option>Soft lighting</option><option>Night</option></select></div></div><button class="btn" id="saveSceneBtn">Save Scene Plan</button></div>
+  </section>
+
+  <section class="page-section" id="motion-studio">
+    <div class="section-head"><h2>Motion Studio</h2><p>Describe movement, gestures and camera action.</p></div>
+    <div class="card"><label>Movement instructions</label><textarea placeholder="Describe how the character and objects should move..."></textarea><div class="grid"><div><label>Movement type</label><select><option>Natural movement</option><option>Walking / running</option><option>Gestures and expressions</option><option>Dance</option><option>Object movement</option><option>Camera movement</option></select></div><div><label>Motion preference</label><select><option>Smooth and realistic</option><option>Energetic</option><option>Slow motion</option><option>Stylised animation</option></select></div></div><button class="btn" id="prepareMotionBtn">Prepare Motion</button><p class="notice">Actual motion generation requires a connected video-generation engine.</p></div>
+  </section>
+
+  <section class="page-section" id="voice-studio">
+    <div class="section-head"><h2>Voice & Sound</h2><p>Plan dialogue, voiceover, music and sound effects.</p></div>
+    <div class="card"><label>Dialogue / voiceover script</label><textarea placeholder="Enter character dialogue or narration..."></textarea><div class="grid"><div><label>Language</label><select><option>English</option><option>Nigerian English</option><option>Other</option></select></div><div><label>Voice tone</label><select><option>Natural</option><option>Friendly</option><option>Excited</option><option>Calm</option><option>Dramatic</option></select></div><div><label>Background music</label><select><option>Not selected</option><option>Light cheerful</option><option>Cinematic</option><option>Emotional</option><option>Suspense</option><option>None</option></select></div><div><label>Sound effects</label><select><option>Suggested for each scene</option><option>Kitchen sounds</option><option>Nature ambience</option><option>City ambience</option><option>None</option></select></div></div><button class="btn" id="prepareAudioBtn">Prepare Audio Plan</button><p class="notice">Voice synthesis, music licensing and lip-sync require connected services and appropriate usage rights.</p></div>
+  </section>
+
+  <section class="page-section" id="timeline">
+    <div class="section-head"><h2>Video Timeline</h2><p>Plan the arrangement of scenes, audio and subtitles.</p></div>
+    <div class="card"><h3>Editing tracks</h3><div class="track"><b>VIDEO</b> Scene 01 · Scene 02 · Scene 03</div><div class="track"><b>AUDIO</b> Voiceover · Music · Sound effects</div><div class="track"><b>SUBTITLES</b> Subtitle track</div><label>Scene transition</label><select><option>Fade</option><option>Cut</option><option>Dissolve</option><option>Slide</option></select><p class="notice">Interactive timeline editing will be developed in a later stage.</p></div>
+  </section>
+
+  <section class="page-section" id="export-studio">
+    <div class="section-head"><h2>Export Studio</h2><p>Choose your intended video output settings.</p></div>
+    <div class="card"><div class="grid"><div><label>Aspect ratio</label><select><option>16:9 YouTube</option><option>9:16 TikTok / Reels</option><option>1:1 Instagram</option></select></div><div><label>Resolution</label><select><option>1080p</option><option>720p</option><option>2K</option><option>4K</option></select></div><div><label>File format</label><select><option>MP4</option><option>MOV</option></select></div><div><label>Maximum planned duration</label><select><option>Up to 10 minutes</option><option>Up to 5 minutes</option><option>Up to 3 minutes</option></select></div></div><button class="btn" id="prepareExportBtn">Prepare Export Settings</button><p class="notice">Rendering and downloadable video export require a connected rendering service.</p></div>
+  </section>
+
+  <section class="page-section" id="preferences">
+    <div class="section-head"><h2>Account Preferences</h2><p>Set your default creative workspace preferences.</p></div>
+    <div class="card"><label>Default visual style</label><select><option>Cinematic</option><option>Photorealistic</option><option>Polished 3D animation</option><option>Cartoon</option><option>Anime</option><option>Fantasy</option></select><label>Default aspect ratio</label><select><option>16:9</option><option>9:16</option><option>1:1</option></select><label>Language</label><select><option>English</option></select><button class="btn" id="savePreferencesBtn">Save Preferences</button></div>
+  </section>
+  <div class="footer">CINEVORA AI Creative Studio · Interface prototype</div>
+</main>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const navLinks = document.querySelectorAll(".nav-link[data-section]");
+  const sections = document.querySelectorAll(".page-section");
+
+  function showSection(sectionId) {
+    const target = document.getElementById(sectionId);
+    if (!target || !target.classList.contains("page-section")) return;
+    sections.forEach(section => section.classList.toggle("active", section.id === sectionId));
+    navLinks.forEach(link => link.classList.toggle("active", link.dataset.section === sectionId));
+    window.scrollTo({top: 0, behavior: "smooth"});
+  }
+
+  navLinks.forEach(link => link.addEventListener("click", () => showSection(link.dataset.section)));
+  document.querySelectorAll("[data-go]").forEach(button => button.addEventListener("click", () => showSection(button.dataset.go)));
+
+  const storyButton = document.getElementById("generateStoryBtn");
+  if (storyButton) storyButton.addEventListener("click", () => {
+    const prompt = document.getElementById("storyPrompt");
+    if (!prompt.value.trim()) { alert("Please describe the story you want to create."); return; }
+    alert("Your story brief has been received. Connect an AI story service to generate the storyboard.");
+  });
+
+  const addActionButton = document.getElementById("addActionBtn");
+  if (addActionButton) addActionButton.addEventListener("click", () => {
+    const field = document.createElement("textarea");
+    field.className = "action-input";
+    field.placeholder = "Describe another simultaneous action...";
+    document.getElementById("actionsContainer").appendChild(field);
+  });
+
+  const addSceneButton = document.getElementById("addSceneBtn");
+  if (addSceneButton) addSceneButton.addEventListener("click", () => {
+    const scene = document.createElement("div");
+    scene.className = "scene";
+    scene.innerHTML = '<b>New Scene</b><textarea placeholder="Describe this scene..." style="margin-top:10px"></textarea>';
+    document.getElementById("extraScenes").appendChild(scene);
+  });
+
+  const upload = document.getElementById("imageUpload");
+  if (upload) upload.addEventListener("change", function () {
+    const file = this.files && this.files[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) { alert("Please choose an image file."); this.value = ""; return; }
+    const reader = new FileReader();
+    reader.onload = event => {
+      const preview = document.getElementById("imagePreview");
+      preview.innerHTML = "";
+      const image = document.createElement("img");
+      image.src = event.target.result;
+      image.alt = "Selected reference image";
+      preview.appendChild(image);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  const messages = {
+    saveProjectBtn: "The interface is ready. Cloud project saving will require a database and storage service.",
+    saveCharacterBtn: "Character description noted in this prototype. AI character generation requires a connected image service.",
+    prepareImageBtn: "Image prompt prepared. Connect an AI image-generation service to create the image.",
+    saveSceneBtn: "Scene plan prepared in this prototype. Scene generation requires a connected AI service.",
+    prepareMotionBtn: "Motion instructions prepared. Connect a video-generation service to generate movement.",
+    prepareAudioBtn: "Audio plan prepared. Voice, music and sound services must be connected for audio generation.",
+    prepareExportBtn: "Export settings prepared. A rendering service is required to create the MP4 or MOV file.",
+    savePreferencesBtn: "Preferences selected. Saving them between sessions will require project storage."
+  };
+  Object.keys(messages).forEach(id => {
+    const button = document.getElementById(id);
+    if (button) button.addEventListener("click", () => alert(messages[id]));
+  });
+
+  console.log("CINEVORA interface loaded successfully.");
+});
+</script>
+</body>
+</html>
